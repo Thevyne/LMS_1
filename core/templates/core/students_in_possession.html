@@ -1,0 +1,22 @@
+<!-- students_in_possession.html -->
+
+{% extends 'core/base2.html' %}
+
+{% block content %}
+  <h1>Students in Possession of Books</h1>
+  <ul>
+    {% for record in borrowed_books %}
+      <li>
+        <strong>Student:</strong> {{ record.student.username }}<br>
+        <strong>Book:</strong> {{ record.book.title }}<br>
+        <strong>Borrowed Date:</strong> {{ record.borrowed_date }}<br>
+        {% if not record.returned_date %}
+          <strong>Currently in possession</strong>
+        {% else %}
+          <strong>Returned Date:</strong> {{ record.returned_date }}
+        {% endif %}
+        <hr>
+      </li>
+    {% endfor %}
+  </ul>
+{% endblock %}

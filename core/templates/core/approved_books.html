@@ -1,0 +1,21 @@
+{% extends 'core/base2.html' %}
+
+{% load custom_filters %}
+{% block content %}
+
+{% if book_return.returned == True %}
+<h1>Approved Books</h1>
+<h2>No pending books</h2>
+
+{% else %}
+<h1>Approved Books</h1>
+<ul>
+    {% for book in approved_books|exclude_returned_books:returned_books %}
+    <li>{{ book.title }}</li>
+    <a href="{% url 'return_book' book.id %}" class="btn btn-primary">Return</a>
+    {% endfor %}
+</ul>
+{% endif %}
+{% endblock %}
+
+
